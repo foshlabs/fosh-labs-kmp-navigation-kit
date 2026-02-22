@@ -1,0 +1,12 @@
+{
+  "rootPublicationCoordinates": {
+    "group": "com.foshlabs.navigation",
+    "artifactId": "navigation-core",
+    "version": "0.1.0"
+  },
+  "targetPublicationCoordinates": {
+    "group": "com.foshlabs.navigation",
+    "artifactId": "navigation-core-android",
+    "version": "0.1.0"
+  }
+}

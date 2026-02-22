@@ -1,0 +1,198 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../navigation-compose/0.1.0/navigation-compose-0.1.0.module",
+    "group": "com.foshlabs.navigation",
+    "module": "navigation-compose",
+    "version": "0.1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-compose-release.aar",
+          "url": "navigation-compose-android-0.1.0.aar",
+          "size": 15569,
+          "sha512": "70006bb8f30cd61b599723567849d735b74b9547b2cd6049ddb1bd572027d941a7b5a51976bb3ae2042ff134584ef5aa89f3cf2e59c73bead1d2c54603e57a1e",
+          "sha256": "6b07d70dddedecb599861e27720530da10dd138e91a5168d50c4a4a188dec2f6",
+          "sha1": "aa238f89a9f80fb7b291b83385bdbc72d0fa922b",
+          "md5": "4b3af59454e2a183d63561deb8be6ab3"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.foshlabs.navigation",
+          "module": "navigation-core",
+          "version": {
+            "requires": "0.1.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-compose",
+          "version": {
+            "requires": "2.8.3"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.compose.runtime",
+          "module": "runtime",
+          "version": {
+            "requires": "1.7.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.7.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-compose-release.aar",
+          "url": "navigation-compose-android-0.1.0.aar",
+          "size": 15569,
+          "sha512": "70006bb8f30cd61b599723567849d735b74b9547b2cd6049ddb1bd572027d941a7b5a51976bb3ae2042ff134584ef5aa89f3cf2e59c73bead1d2c54603e57a1e",
+          "sha256": "6b07d70dddedecb599861e27720530da10dd138e91a5168d50c4a4a188dec2f6",
+          "sha1": "aa238f89a9f80fb7b291b83385bdbc72d0fa922b",
+          "md5": "4b3af59454e2a183d63561deb8be6ab3"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "navigation-compose-android-0.1.0-sources.jar",
+          "url": "navigation-compose-android-0.1.0-sources.jar",
+          "size": 3325,
+          "sha512": "29da564e3a7a367af0ca9257ac41cbe82c0128afd28c64037c759bb6a5bc1bebc29b7499b46b4e5ae042f8547092c92c298f4d5da2b9459c6c21a960b44b7ee0",
+          "sha256": "fadc2ecb68c16a411ca951f0f8e9ef2ec0258f466b0b4b4906529308c18606b6",
+          "sha1": "128a5f2c825cd268bec4689ed1026e973222db69",
+          "md5": "fd02e2fe9d82c0c798d6911836a12afc"
+        }
+      ]
+    }
+  ]
+}

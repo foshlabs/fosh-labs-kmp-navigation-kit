@@ -1,0 +1,22 @@
+[versions]
+agp = "8.6.1"
+androidx-navigationCompose = "2.8.3"
+compose-multiplatform = "1.7.0"
+kmpObservableViewmodel = "1.0.0-BETA-7"
+kmpNativeCoroutines = "1.0.0-ALPHA-45"
+koin = "4.0.0"
+kotlin = "2.2.0"
+ksp = "2.2.0-2.0.2"
+
+[libraries]
+kmp-observable-viewmodel = { module = "com.rickclephas.kmp:kmp-observableviewmodel-core", version.ref = "kmpObservableViewmodel" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigationCompose" }
+
+[plugins]
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+kmpNativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmpNativeCoroutines" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

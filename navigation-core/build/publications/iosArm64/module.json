@@ -1,0 +1,160 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../navigation-core/0.1.0/navigation-core-0.1.0.module",
+    "group": "com.foshlabs.navigation",
+    "module": "navigation-core",
+    "version": "0.1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "com.rickclephas.kmp",
+          "module": "kmp-observableviewmodel-core",
+          "version": {
+            "requires": "1.0.0-BETA-7"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.0"
+          }
+        },
+        {
+          "group": "com.rickclephas.kmp",
+          "module": "kmp-nativecoroutines-core",
+          "version": {
+            "requires": "1.0.0-ALPHA-45"
+          }
+        },
+        {
+          "group": "com.rickclephas.kmp",
+          "module": "kmp-nativecoroutines-annotations",
+          "version": {
+            "requires": "1.0.0-ALPHA-45"
+          }
+        },
+        {
+          "group": "io.insert-koin",
+          "module": "koin-core",
+          "version": {
+            "requires": "4.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-core-iosArm64Main-0.1.0.klib",
+          "url": "navigation-core-iosarm64-0.1.0.klib",
+          "size": 19763,
+          "sha512": "62182dbc60a0de16ddff4962c3d0a59ca704ab657b6739951c2af993e84d4710cb969f4aae890d6eaf9887dc8efa277e2dc27ba87471fe8725285b2329f55070",
+          "sha256": "6b8b8e876ee76ba53ffc1445baab3c0748f4242c3e2580dcfe421bd2393e1e2d",
+          "sha1": "95742f67204c35e255bac330ba3fff80a0e7a7f5",
+          "md5": "994b81b5d3fca3d11e2656f5277d7da3"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "navigation-core-iosarm64-0.1.0-sources.jar",
+          "url": "navigation-core-iosarm64-0.1.0-sources.jar",
+          "size": 4787,
+          "sha512": "42fb8c0a8d53815ee2604befb4dc1e7239cf3c0df8762ab25d62e932dde61435bcef99318be37561a651a6d6f8b9fcd091e990370aea8924f7a0a670daf37e10",
+          "sha256": "688d78d37a356829925028d95889655102a47f8273ff8159c893afab28d3da29",
+          "sha1": "bfa2b530da8f76820caf2e02b8b0d1bc7fc0cdaa",
+          "md5": "02e89695f83328a4e496661547229826"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "com.rickclephas.kmp",
+          "module": "kmp-observableviewmodel-core",
+          "version": {
+            "requires": "1.0.0-BETA-7"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.0"
+          }
+        },
+        {
+          "group": "com.rickclephas.kmp",
+          "module": "kmp-nativecoroutines-core",
+          "version": {
+            "requires": "1.0.0-ALPHA-45"
+          }
+        },
+        {
+          "group": "com.rickclephas.kmp",
+          "module": "kmp-nativecoroutines-annotations",
+          "version": {
+            "requires": "1.0.0-ALPHA-45"
+          }
+        },
+        {
+          "group": "io.insert-koin",
+          "module": "koin-core",
+          "version": {
+            "requires": "4.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-core-iosarm64-0.1.0-metadata.jar",
+          "url": "navigation-core-iosarm64-0.1.0-metadata.jar",
+          "size": 3009,
+          "sha512": "0639d17a756546870d0a439f34cacb5d9218d0a95e842a4e0aa91233d71584d6f1f282616df61e72d73117065a5a8530c166cabd15e131779cf01a03f042da48",
+          "sha256": "7c96378630d1fa97fc294816a87717aa1c3125db93bb87c423b8c4ec3c373931",
+          "sha1": "05b7aca6a3bbd8dc1060598337f19640d1e93e25",
+          "md5": "b4e89ed61aa9dbd2648a6a8034630027"
+        }
+      ]
+    }
+  ]
+}
