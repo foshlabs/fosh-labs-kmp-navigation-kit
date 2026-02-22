@@ -3,14 +3,14 @@ package com.foshlabs.navigation
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
-interface SceneRepository<T : Scene> {
+interface SceneRepository<T : AppScene> {
     fun storeScene(scene: T)
     fun observeScene(): Flow<T?>
     fun getScene(): T?
     fun clearScene()
 }
 
-abstract class SceneRepositoryImpl<S : Scene> : SceneRepository<S> {
+abstract class SceneRepositoryImpl<S : AppScene> : SceneRepository<S> {
     private var scene: S? = null
     private val sceneFlow = MutableStateFlow<S?>(null)
 

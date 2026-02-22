@@ -8,7 +8,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.NavController
 import com.foshlabs.navigation.BaseViewModel
 import com.foshlabs.navigation.NavigationState
-import com.foshlabs.navigation.Scene
+import com.foshlabs.navigation.AppScene
 import com.foshlabs.navigation.ViewModelState
 import kotlinx.coroutines.flow.filter
 
@@ -17,13 +17,13 @@ import kotlinx.coroutines.flow.filter
  *
  * @param viewModel The ViewModel emitting navigation events
  * @param navController The NavController to perform navigation on
- * @param sceneMapper Maps a [Scene] to a navigation destination object (e.g., a @Serializable route)
+ * @param sceneMapper Maps an [AppScene] to a navigation destination object (e.g., a @Serializable route)
  */
 @Composable
 fun <S : ViewModelState> HandleNavigation(
     viewModel: BaseViewModel<S>,
     navController: NavController,
-    sceneMapper: (Scene) -> Any
+    sceneMapper: (AppScene) -> Any
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val navigationManager = LocalNavigationManager.current
@@ -51,7 +51,7 @@ private fun processNavigationState(
     navigationState: NavigationState,
     navController: NavController,
     navigationManager: NavigationManager,
-    sceneMapper: (Scene) -> Any
+    sceneMapper: (AppScene) -> Any
 ) {
     when (navigationState) {
         is NavigationState.ReplaceRoot -> {

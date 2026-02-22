@@ -6,7 +6,7 @@ A Kotlin Multiplatform navigation architecture library providing shared ViewMode
 
 ### `navigation-core`
 KMP module (commonMain + androidMain + iosMain) containing:
-- `Scene` — Marker interface for navigation destinations
+- `AppScene` — Marker interface for navigation destinations
 - `NavigationState` — Sealed interface for navigation actions (Push, Pop, PresentSheet, etc.)
 - `BaseViewModel` — Base ViewModel with state and navigation management
 - `SceneRepository` — Pattern for passing data between scenes
@@ -37,10 +37,10 @@ dependencies {
 
 ```kotlin
 // In your project's shared module
-sealed interface AppScene : Scene {
-    data object Home : AppScene
-    data object Settings : AppScene
-    data object Onboarding : AppScene
+sealed interface MyProjectScene : AppScene {
+    data object Home : MyProjectScene
+    data object Settings : MyProjectScene
+    data object Onboarding : MyProjectScene
 }
 ```
 

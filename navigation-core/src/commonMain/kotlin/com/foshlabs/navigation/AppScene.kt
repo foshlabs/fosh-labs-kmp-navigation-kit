@@ -5,10 +5,10 @@ package com.foshlabs.navigation
  *
  * Consuming projects should define their own sealed interface extending this:
  * ```
- * sealed interface AppScene : Scene {
- *     data object Home : AppScene
- *     data object Settings : AppScene
+ * sealed interface MyProjectScene : AppScene {
+ *     data object Home : MyProjectScene
+ *     data object Settings : MyProjectScene
  * }
  * ```
  */
-interface Scene
+interface AppScene
