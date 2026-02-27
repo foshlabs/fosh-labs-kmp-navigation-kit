@@ -1,5 +1,7 @@
 # Fosh Labs KMP Navigation Kit
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.foshlabs.navigation/navigation-core)](https://central.sonatype.com/artifact/io.github.foshlabs.navigation/navigation-core)
+
 A Kotlin Multiplatform navigation architecture library providing shared ViewModel-driven navigation for iOS and Android.
 
 ## Modules
@@ -19,28 +21,47 @@ Android-only module with Jetpack Compose navigation integration:
 
 ## Installation
 
+The library is published to [Maven Central](https://central.sonatype.com/artifact/io.github.foshlabs.navigation/navigation-core). Add the dependency to your project:
+
+**Option 1: Kotlin DSL (`build.gradle.kts`)**
+
 ```kotlin
-// In your shared module's build.gradle.kts
+// In your shared KMP module's build.gradle.kts
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            api("io.github.foshlabs.navigation:navigation-core:0.1.0")
+        }
+        androidMain.dependencies {
+            implementation("io.github.foshlabs.navigation:navigation-compose:0.1.0")
+        }
+    }
+}
+// For iOS: add export("io.github.foshlabs.navigation:navigation-core:0.1.0") to your framework block
+```
+
+**Option 2: Version catalog (`libs.versions.toml`)**
+
+```toml
+[versions]
+foshlabs-navigation = "0.1.0"
+
+[libraries]
+foshlabs-navigation-core = { group = "io.github.foshlabs.navigation", name = "navigation-core", version.ref = "foshlabs-navigation" }
+foshlabs-navigation-compose = { group = "io.github.foshlabs.navigation", name = "navigation-compose", version.ref = "foshlabs-navigation" }
+```
+
+```kotlin
+// In your build.gradle.kts
 commonMain.dependencies {
-    api("com.foshlabs.navigation:navigation-core:0.1.0")
+    api(libs.foshlabs.navigation.core)
 }
-
-// Export for iOS framework visibility
-iosTarget.binaries.framework {
-    export("com.foshlabs.navigation:navigation-core:0.1.0")
-}
-
-// In your Android app module's build.gradle.kts
 androidMain.dependencies {
-    implementation("com.foshlabs.navigation:navigation-compose:0.1.0")
+    implementation(libs.foshlabs.navigation.compose)
 }
 ```
 
-Currently distributed via `mavenLocal()`. Add `mavenLocal()` to your `settings.gradle.kts` repositories and publish with:
-
-```bash
-./gradlew publishToMavenLocal
-```
+> Maven Central is included by default in most Gradle projects. If needed, ensure `mavenCentral()` is in your `repositories` block.
 
 ## Usage
 
@@ -188,12 +209,4 @@ See [fosh-labs-kmp-navigation-kit-ios](https://github.com/foshlabs/fosh-labs-kmp
 
 ## Publishing
 
-Configured for Maven Central. Set credentials via `gradle.properties` or environment variables:
-
-```properties
-ossrhUsername=your-username
-ossrhPassword=your-password
-signing.keyId=your-key-id
-signing.key=your-ascii-armored-key
-signing.password=your-key-password
-```
+Publishing to Maven Central is configured. Credentials are loaded from `gradle-secrets.properties` (gitignored). See the [Maven Central publishing guide](https://kotlinlang.org/docs/multiplatform/multiplatform-publish-libraries.html) for setup.
