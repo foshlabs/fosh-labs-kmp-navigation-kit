@@ -1,4 +1,4 @@
-package com.foshlabs.navigation
+package io.github.foshlabs.kmp.navigationkit
 
 /**
  * Navigation states for handling different types of navigation in the app.

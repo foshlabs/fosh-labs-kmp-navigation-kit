@@ -1,4 +1,4 @@
-package com.foshlabs.navigation.compose
+package io.github.foshlabs.kmp.navigationkit.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -6,10 +6,10 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.NavController
-import com.foshlabs.navigation.BaseViewModel
-import com.foshlabs.navigation.NavigationState
-import com.foshlabs.navigation.AppScene
-import com.foshlabs.navigation.ViewModelState
+import io.github.foshlabs.kmp.navigationkit.BaseViewModel
+import io.github.foshlabs.kmp.navigationkit.NavigationState
+import io.github.foshlabs.kmp.navigationkit.AppScene
+import io.github.foshlabs.kmp.navigationkit.ViewModelState
 import kotlinx.coroutines.flow.filter
 
 /**

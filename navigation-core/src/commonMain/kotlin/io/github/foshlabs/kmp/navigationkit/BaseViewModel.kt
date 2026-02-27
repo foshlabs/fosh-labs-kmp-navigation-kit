@@ -1,4 +1,4 @@
-package com.foshlabs.navigation
+package io.github.foshlabs.kmp.navigationkit
 
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
 import com.rickclephas.kmp.observableviewmodel.MutableStateFlow

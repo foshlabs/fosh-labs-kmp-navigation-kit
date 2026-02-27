@@ -8,12 +8,12 @@ plugins {
     alias(libs.plugins.vanniktechMavenPublish)
 }
 
-group = "io.github.foshlabs.navigation"
+group = "io.github.foshlabs.kmp.navigationkit"
 version = "0.1.0"
 
 kotlin {
     androidLibrary {
-        namespace = "com.foshlabs.navigation.compose"
+        namespace = "io.github.foshlabs.kmp.navigationkit.compose"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
         compilations.configureEach {
@@ -36,7 +36,7 @@ kotlin {
 mavenPublishing {
     publishToMavenCentral()
     signAllPublications()
-    coordinates(group.toString(), "navigation-compose", version.toString())
+    coordinates("io.github.foshlabs.kmp.navigationkit", "navigation-compose", version.toString())
     pom {
         name.set("Fosh Labs Navigation Compose")
         description.set("Jetpack Compose navigation integration for Fosh Labs Navigation Kit")

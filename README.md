@@ -1,6 +1,6 @@
 # Fosh Labs KMP Navigation Kit
 
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.foshlabs.navigation/navigation-core)](https://central.sonatype.com/artifact/io.github.foshlabs.navigation/navigation-core)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.foshlabs.kmp.navigationkit/navigation-core)](https://central.sonatype.com/artifact/io.github.foshlabs.kmp.navigationkit/navigation-core)
 
 A Kotlin Multiplatform navigation architecture library providing shared ViewModel-driven navigation for iOS and Android.
 
@@ -21,7 +21,7 @@ Android-only module with Jetpack Compose navigation integration:
 
 ## Installation
 
-The library is published to [Maven Central](https://central.sonatype.com/artifact/io.github.foshlabs.navigation/navigation-core). Add the dependency to your project:
+The library is published to [Maven Central](https://central.sonatype.com/artifact/io.github.foshlabs.kmp.navigationkit/navigation-core). Add the dependency to your project:
 
 **Option 1: Kotlin DSL (`build.gradle.kts`)**
 
@@ -30,14 +30,14 @@ The library is published to [Maven Central](https://central.sonatype.com/artifac
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            api("io.github.foshlabs.navigation:navigation-core:0.1.0")
+            api("io.github.foshlabs.kmp.navigationkit:navigation-core:0.1.0")
         }
         androidMain.dependencies {
-            implementation("io.github.foshlabs.navigation:navigation-compose:0.1.0")
+            implementation("io.github.foshlabs.kmp.navigationkit:navigation-compose:0.1.0")
         }
     }
 }
-// For iOS: add export("io.github.foshlabs.navigation:navigation-core:0.1.0") to your framework block
+// For iOS: add export("io.github.foshlabs.kmp.navigationkit:navigation-core:0.1.0") to your framework block
 ```
 
 **Option 2: Version catalog (`libs.versions.toml`)**
@@ -47,8 +47,8 @@ kotlin {
 foshlabs-navigation = "0.1.0"
 
 [libraries]
-foshlabs-navigation-core = { group = "io.github.foshlabs.navigation", name = "navigation-core", version.ref = "foshlabs-navigation" }
-foshlabs-navigation-compose = { group = "io.github.foshlabs.navigation", name = "navigation-compose", version.ref = "foshlabs-navigation" }
+foshlabs-navigation-core = { group = "io.github.foshlabs.kmp.navigationkit", name = "navigation-core", version.ref = "foshlabs-navigation" }
+foshlabs-navigation-compose = { group = "io.github.foshlabs.kmp.navigationkit", name = "navigation-compose", version.ref = "foshlabs-navigation" }
 ```
 
 ```kotlin
@@ -70,7 +70,7 @@ androidMain.dependencies {
 In your project's shared module, create a sealed interface extending `AppScene`:
 
 ```kotlin
-import com.foshlabs.navigation.AppScene
+import io.github.foshlabs.kmp.navigationkit.AppScene
 
 sealed interface MyProjectScene : AppScene {
     data object Home : MyProjectScene
@@ -85,9 +85,9 @@ sealed interface MyProjectScene : AppScene {
 ViewModels extend `BaseViewModel` and call `navigate()` with `NavigationState` actions:
 
 ```kotlin
-import com.foshlabs.navigation.BaseViewModel
-import com.foshlabs.navigation.NavigationState
-import com.foshlabs.navigation.ViewModelState
+import io.github.foshlabs.kmp.navigationkit.BaseViewModel
+import io.github.foshlabs.kmp.navigationkit.NavigationState
+import io.github.foshlabs.kmp.navigationkit.ViewModelState
 
 class HomeViewModel : BaseViewModel<HomeViewModel.State>(State()) {
 
@@ -120,7 +120,7 @@ Available navigation actions:
 Create `@Serializable` route objects and a mapper function:
 
 ```kotlin
-import com.foshlabs.navigation.AppScene
+import io.github.foshlabs.kmp.navigationkit.AppScene
 import kotlinx.serialization.Serializable
 
 @Serializable object HomeRoute
@@ -146,9 +146,9 @@ Wrap the library's `HandleNavigation` with your scene mapper so call sites stay 
 ```kotlin
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
-import com.foshlabs.navigation.BaseViewModel
-import com.foshlabs.navigation.ViewModelState
-import com.foshlabs.navigation.compose.HandleNavigation as LibraryHandleNavigation
+import io.github.foshlabs.kmp.navigationkit.BaseViewModel
+import io.github.foshlabs.kmp.navigationkit.ViewModelState
+import io.github.foshlabs.kmp.navigationkit.compose.HandleNavigation as LibraryHandleNavigation
 
 @Composable
 fun <S : ViewModelState> HandleNavigation(
@@ -168,8 +168,8 @@ fun <S : ViewModelState> HandleNavigation(
 Provide `NavigationManager` via `CompositionLocalProvider` and use `HandleNavigation` in each screen:
 
 ```kotlin
-import com.foshlabs.navigation.compose.LocalNavigationManager
-import com.foshlabs.navigation.compose.NavigationManager
+import io.github.foshlabs.kmp.navigationkit.compose.LocalNavigationManager
+import io.github.foshlabs.kmp.navigationkit.compose.NavigationManager
 
 @Composable
 fun App() {
@@ -209,4 +209,12 @@ See [fosh-labs-kmp-navigation-kit-ios](https://github.com/foshlabs/fosh-labs-kmp
 
 ## Publishing
 
-Publishing to Maven Central is configured. Credentials are loaded from `gradle-secrets.properties` (gitignored). See the [Maven Central publishing guide](https://kotlinlang.org/docs/multiplatform/multiplatform-publish-libraries.html) for setup.
+Publishing to Maven Central is configured. Credentials are loaded from `gradle-secrets.properties` (gitignored).
+
+**Important:** The vanniktech plugin reads `mavenCentralUsername`/`mavenCentralPassword` via Gradle properties (not from `ext`). Use the wrapper script:
+
+```bash
+./publishToMavenCentral.sh
+```
+
+This reads `ossrhUsername`/`ossrhPassword` from `gradle-secrets.properties` and passes them to Gradle. Alternatively, run with `-PmavenCentralUsername=… -PmavenCentralPassword=…` or set `ORG_GRADLE_PROJECT_mavenCentralUsername` and `ORG_GRADLE_PROJECT_mavenCentralPassword` env vars.

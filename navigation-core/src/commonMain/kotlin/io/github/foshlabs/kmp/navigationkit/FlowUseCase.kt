@@ -1,4 +1,4 @@
-package com.foshlabs.navigation
+package io.github.foshlabs.kmp.navigationkit
 
 import kotlinx.coroutines.flow.Flow
 

@@ -1,4 +1,4 @@
-package com.foshlabs.navigation.compose
+package io.github.foshlabs.kmp.navigationkit.compose
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.navigation.NavController
