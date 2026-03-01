@@ -6,14 +6,14 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.NavController
-import io.github.foshlabs.kmp.navigationkit.BaseViewModel
+import io.github.foshlabs.kmp.navigationkit.NavigationViewModel
 import io.github.foshlabs.kmp.navigationkit.NavigationState
 import io.github.foshlabs.kmp.navigationkit.AppScene
-import io.github.foshlabs.kmp.navigationkit.ViewModelState
+import io.github.foshlabs.kmp.architecturekit.ViewModelState
 import kotlinx.coroutines.flow.filter
 
 /**
- * Composable function that handles navigation events from a BaseViewModel.
+ * Composable function that handles navigation events from a NavigationViewModel.
  *
  * @param viewModel The ViewModel emitting navigation events
  * @param navController The NavController to perform navigation on
@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.filter
  */
 @Composable
 fun <S : ViewModelState> HandleNavigation(
-    viewModel: BaseViewModel<S>,
+    viewModel: NavigationViewModel<S>,
     navController: NavController,
     sceneMapper: (AppScene) -> Any
 ) {

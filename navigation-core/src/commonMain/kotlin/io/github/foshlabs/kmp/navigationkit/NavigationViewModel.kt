@@ -2,27 +2,12 @@ package io.github.foshlabs.kmp.navigationkit
 
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
 import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
-import com.rickclephas.kmp.observableviewmodel.ViewModel
+import io.github.foshlabs.kmp.architecturekit.BaseViewModel
+import io.github.foshlabs.kmp.architecturekit.ViewModelState
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-abstract class BaseViewModel<S : ViewModelState>(initialState: S): ViewModel() {
-
-    // MARK: - State
-
-    private val _state = MutableStateFlow(
-        viewModelScope = viewModelScope,
-        value = initialState
-    )
-
-    protected var state: S
-        get() = _state.value
-        set(value) { _state.value = value }
-
-    @NativeCoroutinesState
-    val states: StateFlow<S> = _state.asStateFlow()
-
-    // MARK: - Navigation
+abstract class NavigationViewModel<S : ViewModelState>(initialState: S) : BaseViewModel<S>(initialState) {
 
     private val _navigationState = MutableStateFlow<NavigationState>(
         viewModelScope = viewModelScope,
@@ -40,5 +25,3 @@ abstract class BaseViewModel<S : ViewModelState>(initialState: S): ViewModel() {
     @NativeCoroutinesState
     val navigationStates: StateFlow<NavigationState> = _navigationState.asStateFlow()
 }
-
-interface ViewModelState

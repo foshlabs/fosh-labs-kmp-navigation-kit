@@ -36,7 +36,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(libs.kmp.observable.viewmodel)
+            api(libs.foshlabs.architecture.core)
             implementation(libs.koin.core)
         }
 
@@ -53,7 +53,7 @@ mavenPublishing {
     coordinates("io.github.foshlabs.kmp.navigationkit", "navigation-core", version.toString())
     pom {
         name.set("Fosh Labs Navigation Core")
-        description.set("KMP navigation architecture with BaseViewModel, NavigationState, and UseCase patterns")
+        description.set("KMP navigation architecture with NavigationViewModel, NavigationState, and scene-based routing")
         inceptionYear.set("2025")
         url.set("https://github.com/foshlabs/fosh-labs-kmp-navigation-kit")
         licenses {

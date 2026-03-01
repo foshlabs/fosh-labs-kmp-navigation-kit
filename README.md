@@ -10,9 +10,10 @@ A Kotlin Multiplatform navigation architecture library providing shared ViewMode
 KMP module (commonMain + androidMain + iosMain) containing:
 - `AppScene` — Marker interface for navigation destinations
 - `NavigationState` — Sealed interface for navigation actions (Push, Pop, PresentSheet, etc.)
-- `BaseViewModel` — Base ViewModel with state and navigation management
+- `NavigationViewModel` — ViewModel base class with navigation support (extends [architecture kit](https://github.com/foshlabs/fosh-labs-kmp-architecture-kit)'s `BaseViewModel`)
 - `SceneRepository` — Pattern for passing data between scenes
-- `UseCase`, `SuspendUseCase`, `FlowUseCase` — Base use case classes
+
+Depends on [fosh-labs-kmp-architecture-kit](https://github.com/foshlabs/fosh-labs-kmp-architecture-kit) for `BaseViewModel`, `UseCase`, and `ViewModelState`.
 
 ### `navigation-compose`
 Android-only module with Jetpack Compose navigation integration:
@@ -82,14 +83,14 @@ sealed interface MyProjectScene : AppScene {
 
 ### 2. Navigate from ViewModels
 
-ViewModels extend `BaseViewModel` and call `navigate()` with `NavigationState` actions:
+ViewModels that need navigation extend `NavigationViewModel` and call `navigate()` with `NavigationState` actions:
 
 ```kotlin
-import io.github.foshlabs.kmp.navigationkit.BaseViewModel
+import io.github.foshlabs.kmp.navigationkit.NavigationViewModel
 import io.github.foshlabs.kmp.navigationkit.NavigationState
-import io.github.foshlabs.kmp.navigationkit.ViewModelState
+import io.github.foshlabs.kmp.architecturekit.ViewModelState
 
-class HomeViewModel : BaseViewModel<HomeViewModel.State>(State()) {
+class HomeViewModel : NavigationViewModel<HomeViewModel.State>(State()) {
 
     data class State(
         val title: String = "Home"
@@ -146,13 +147,13 @@ Wrap the library's `HandleNavigation` with your scene mapper so call sites stay 
 ```kotlin
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
-import io.github.foshlabs.kmp.navigationkit.BaseViewModel
-import io.github.foshlabs.kmp.navigationkit.ViewModelState
+import io.github.foshlabs.kmp.navigationkit.NavigationViewModel
+import io.github.foshlabs.kmp.architecturekit.ViewModelState
 import io.github.foshlabs.kmp.navigationkit.compose.HandleNavigation as LibraryHandleNavigation
 
 @Composable
 fun <S : ViewModelState> HandleNavigation(
-    viewModel: BaseViewModel<S>,
+    viewModel: NavigationViewModel<S>,
     navController: NavController
 ) {
     LibraryHandleNavigation(
@@ -202,6 +203,7 @@ See [fosh-labs-kmp-navigation-kit-ios](https://github.com/foshlabs/fosh-labs-kmp
 | Dependency | Version |
 |---|---|
 | Kotlin | 2.2.0 |
+| [Fosh Labs Architecture Kit](https://github.com/foshlabs/fosh-labs-kmp-architecture-kit) | 0.1.0 |
 | KMP Observable ViewModel | 1.0.0-BETA-7 |
 | KMP Native Coroutines | 1.0.0-ALPHA-45 |
 | Koin | 4.0.0 |
