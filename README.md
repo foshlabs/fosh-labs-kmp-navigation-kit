@@ -31,21 +31,21 @@ The library is published to [Maven Central](https://central.sonatype.com/artifac
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            api("io.github.foshlabs.kmp.navigationkit:navigation-core:0.1.1")
+            api("io.github.foshlabs.kmp.navigationkit:navigation-core:0.1.2")
         }
         androidMain.dependencies {
-            implementation("io.github.foshlabs.kmp.navigationkit:navigation-compose:0.1.1")
+            implementation("io.github.foshlabs.kmp.navigationkit:navigation-compose:0.1.2")
         }
     }
 }
-// For iOS: add export("io.github.foshlabs.kmp.navigationkit:navigation-core:0.1.1") to your framework block
+// For iOS: add export("io.github.foshlabs.kmp.navigationkit:navigation-core:0.1.2") to your framework block
 ```
 
 **Option 2: Version catalog (`libs.versions.toml`)**
 
 ```toml
 [versions]
-foshlabs-navigation = "0.1.1"
+foshlabs-navigation = "0.1.2"
 
 [libraries]
 foshlabs-navigation-core = { group = "io.github.foshlabs.kmp.navigationkit", name = "navigation-core", version.ref = "foshlabs-navigation" }

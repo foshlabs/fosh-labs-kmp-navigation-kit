@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "io.github.foshlabs.kmp.navigationkit"
-version = "0.1.1"
+version = "0.1.2"
 
 kotlin {
     androidLibrary {
@@ -31,6 +31,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "NavigationCore"
             isStatic = true
+            export(libs.foshlabs.architecture.core)
         }
     }
 
