@@ -42,6 +42,10 @@ fun <S : ViewModelState> HandleNavigation(
 /**
  * Process a navigation state and perform the corresponding navigation action.
  *
+ * Sets the appropriate [NavigationTransitionType] on the [NavigationManager] before
+ * each navigation call so that NavHost transition lambdas can read it to determine
+ * the correct animation.
+ *
  * Modal behavior (matching iOS):
  * - PresentFullScreen/PresentSheet: Marks the current position as a modal entry point
  * - Push/Pop: Regular navigation within the current context
@@ -56,6 +60,8 @@ private fun processNavigationState(
     when (navigationState) {
         is NavigationState.ReplaceRoot -> {
             navigationManager.clearModalStack()
+            navigationManager.clearTransitionHistory()
+            navigationManager.pushTransition(NavigationTransitionType.Replace)
 
             val destination = sceneMapper(navigationState.destination)
             val startDestination = navController.graph.startDestinationRoute
@@ -68,18 +74,23 @@ private fun processNavigationState(
         }
 
         is NavigationState.Push -> {
+            navigationManager.pushTransition(NavigationTransitionType.Push)
             val destination = sceneMapper(navigationState.destination)
             navController.navigate(destination)
         }
 
         is NavigationState.Pop -> {
+            navigationManager.popTransition()
             navController.popBackStack()
         }
 
         is NavigationState.PopToRoot -> {
             if (navigationManager.isInModalContext) {
+                val historySize = navigationManager.transitionHistorySize
                 navigationManager.onModalDismissed(navController)
+                navigationManager.popTransitionsTo(0)
             } else {
+                navigationManager.popTransitionsTo(0)
                 val startDestination = navController.graph.startDestinationRoute
                 if (startDestination != null) {
                     navController.popBackStack(startDestination, false)
@@ -90,8 +101,11 @@ private fun processNavigationState(
         is NavigationState.PopTo -> {
             val destination = navigationState.destination?.let { sceneMapper(it) }
             if (destination != null) {
+                // Pop transition for the current screen
+                navigationManager.popTransition()
                 navController.popBackStack(destination, navigationState.inclusive)
             } else if (navigationState.inclusive) {
+                navigationManager.popTransitionsTo(0)
                 val startDestination = navController.graph.startDestinationRoute
                 if (startDestination != null) {
                     navController.popBackStack(startDestination, false)
@@ -101,19 +115,27 @@ private fun processNavigationState(
 
         is NavigationState.PresentSheet -> {
             navigationManager.onModalPresented(navController)
+            navigationManager.pushTransition(NavigationTransitionType.Modal)
             val destination = sceneMapper(navigationState.destination)
             navController.navigate(destination)
         }
 
         is NavigationState.PresentFullScreen -> {
             navigationManager.onModalPresented(navController)
+            navigationManager.pushTransition(NavigationTransitionType.Modal)
             val destination = sceneMapper(navigationState.destination)
             navController.navigate(destination)
         }
 
         is NavigationState.Dismiss -> {
+            val historySize = navigationManager.transitionHistorySize
             if (!navigationManager.onModalDismissed(navController)) {
+                navigationManager.popTransition()
                 navController.popBackStack()
+            } else {
+                // Pop all transitions that were part of the dismissed modal
+                val newBackStackSize = navController.currentBackStack.value.size
+                navigationManager.popTransitionsTo(newBackStackSize.coerceAtLeast(0))
             }
         }
 

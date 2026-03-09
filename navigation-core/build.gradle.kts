@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "io.github.foshlabs.kmp.navigationkit"
-version = "0.1.2"
+version = "0.2.0"
 
 kotlin {
     androidLibrary {
@@ -50,7 +50,9 @@ kotlin {
 
 mavenPublishing {
     publishToMavenCentral()
-    signAllPublications()
+    if (providers.gradleProperty("signingInMemoryKey").isPresent) {
+        signAllPublications()
+    }
     coordinates("io.github.foshlabs.kmp.navigationkit", "navigation-core", version.toString())
     pom {
         name.set("Fosh Labs Navigation Core")
