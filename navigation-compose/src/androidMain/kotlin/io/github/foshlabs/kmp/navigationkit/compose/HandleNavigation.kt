@@ -64,13 +64,12 @@ private fun processNavigationState(
             navigationManager.pushTransition(NavigationTransitionType.Replace)
 
             val destination = sceneMapper(navigationState.destination)
-            val startDestination = navController.graph.startDestinationRoute
-            if (startDestination != null) {
-                navController.popBackStack(startDestination, true)
-            } else {
-                while (navController.popBackStack()) { /* pop all */ }
+            // popUpTo(0) empties the whole back stack; popping to the start route
+            // silently no-ops once an earlier navigation has removed that route,
+            // stacking the "new root" on top of the old stack.
+            navController.navigate(destination) {
+                popUpTo(0) { inclusive = true }
             }
-            navController.navigate(destination)
         }
 
         is NavigationState.Push -> {
