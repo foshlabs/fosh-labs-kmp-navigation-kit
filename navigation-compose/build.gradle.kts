@@ -16,6 +16,7 @@ kotlin {
         namespace = "io.github.foshlabs.kmp.navigationkit.compose"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
+        withHostTestBuilder {}
         compilations.configureEach {
             compilerOptions.configure {
                 jvmTarget.set(JvmTarget.JVM_17)
@@ -29,6 +30,9 @@ kotlin {
             implementation(libs.androidx.navigation.compose)
             implementation(compose.runtime)
             implementation(compose.foundation)
+        }
+        getByName("androidHostTest").dependencies {
+            implementation(kotlin("test"))
         }
     }
 }
