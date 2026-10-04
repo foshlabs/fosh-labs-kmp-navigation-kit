@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "io.github.foshlabs.kmp.navigationkit"
-version = "0.2.3"
+version = "0.2.4"
 
 kotlin {
     androidLibrary {
