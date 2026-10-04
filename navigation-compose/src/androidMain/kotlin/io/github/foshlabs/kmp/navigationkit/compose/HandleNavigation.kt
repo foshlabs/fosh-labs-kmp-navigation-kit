@@ -57,6 +57,7 @@ private fun processNavigationState(
     navigationManager: NavigationManager,
     sceneMapper: (AppScene) -> Any
 ) {
+    navigationManager.pruneStaleModalEntries(navController)
     when (navigationState) {
         is NavigationState.ReplaceRoot -> {
             navigationManager.clearModalStack()

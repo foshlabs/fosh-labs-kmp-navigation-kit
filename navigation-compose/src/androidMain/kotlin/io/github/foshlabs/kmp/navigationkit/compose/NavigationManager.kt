@@ -58,7 +58,8 @@ class NavigationManager {
     private val transitionHistory = mutableListOf<NavigationTransitionType>()
 
     /**
-     * Whether we're currently inside a modal context.
+     * Whether we're currently inside a modal context. Read it after
+     * [pruneStaleModalEntries], or an entry a system back left behind still counts.
      */
     val isInModalContext: Boolean
         get() = modalEntryStack.isNotEmpty()
@@ -123,6 +124,7 @@ class NavigationManager {
      * Saves the current back stack entry so we can dismiss back to it later.
      */
     fun onModalPresented(navController: NavController) {
+        pruneStaleModalEntries(navController)
         val currentEntry = navController.currentBackStackEntry
         val entryId = currentEntry?.id
         if (entryId != null) {
@@ -137,6 +139,7 @@ class NavigationManager {
      * @return true if a modal was dismissed, false if there was no modal to dismiss
      */
     fun onModalDismissed(navController: NavController): Boolean {
+        pruneStaleModalEntries(navController)
         if (modalEntryStack.isEmpty()) {
             return false
         }
@@ -164,6 +167,39 @@ class NavigationManager {
     fun clearModalStack() {
         modalEntryStack.clear()
     }
+
+    /**
+     * Drops the modal entries whose modal is already gone. System back pops a destination
+     * without going through [onModalDismissed], so its entry stays behind. Left there, the
+     * next Dismiss pops back to that entry: a no-op when the entry is the screen on top,
+     * which is exactly the case of a sheet closed by back over another sheet.
+     */
+    fun pruneStaleModalEntries(navController: NavController) {
+        val live = liveModalEntries(
+            modalEntries = modalEntryStack,
+            backStackIds = navController.currentBackStack.value.map { it.id },
+            currentId = navController.currentBackStackEntry?.id,
+        )
+        modalEntryStack.clear()
+        modalEntryStack.addAll(live)
+    }
+}
+
+/**
+ * The [modalEntries] whose modal is still on the back stack. An entry is recorded as a modal is
+ * presented over it, so a live entry is on the back stack and never the current destination.
+ * Entries are checked from the most recent down, since modals close in reverse order.
+ */
+internal fun liveModalEntries(
+    modalEntries: List<String>,
+    backStackIds: List<String>,
+    currentId: String?,
+): List<String> {
+    val live = modalEntries.filter { it in backStackIds }.toMutableList()
+    while (live.isNotEmpty() && live.last() == currentId) {
+        live.removeAt(live.lastIndex)
+    }
+    return live
 }
 
 /**
